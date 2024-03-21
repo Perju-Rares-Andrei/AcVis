@@ -1,0 +1,672 @@
+/* Nav bar */
+.top-nav {
+  background-color: #000067;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  height: 40px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -50px;
+  text-decoration: none;
+  position: absolute;
+}
+
+.logo {
+  position: absolute;
+  left: 30px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nav-links {
+  flex-basis: 75%;
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+}
+
+.nav-links li {
+  margin-left: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.nav-links a {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #a5a5a5;
+}
+
+/* Navbar login button */
+
+#UserBtn {
+  border-radius: 25px;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+}
+.UserLogin {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  opacity: 0;
+  flex-direction: row;
+  /* margin: 40px; */
+  top: 80px;
+  position: absolute;
+  right: 0px;
+  height: 70px;
+  width: 250px;
+  border-bottom-left-radius: 10px;
+  background: -webkit-linear-gradient(#000067, #d7e1ec);
+  z-index: 1;
+  transition: all 0.5s ease-in;
+}
+.UserLogin.active {
+  opacity: 1;
+}
+.UserLogin ul {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+}
+.UserLogin li {
+  padding: 10px;
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+}
+.UserLogin a {
+  padding: 10px;
+  color: #fff;
+  font-size: 1.25rem;
+  border: none;
+  text-decoration: none;
+  transition: all 0.3s ease-in;
+}
+.UserLogin a:hover {
+  color: #a5a5a5;
+}
+
+/* End Navbar Login Button */
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+.NavTitle {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.NavTitle h1 {
+  font-size: 3.5rem;
+  background: -webkit-linear-gradient(#d7e1ec, #000067);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.CardsClass {
+  justify-content: center;
+  align-items: center;
+}
+
+.LineText {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+}
+.LineText::before,
+.LineText::after {
+  content: "";
+  flex: 1 1;
+  border-bottom: 2px solid;
+  margin: auto;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.LineText::before {
+  margin-right: 10px;
+}
+.LineText::after {
+  margin-left: 10px;
+}
+
+/* CARDS STYLE */
+
+.CardsAndNominalization {
+  width: 95vw;
+  /* margin: 0px 2.5vw 0px 2.5vw; */
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  border-radius: 10px;
+}
+
+.CardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.Card {
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+  height: 60vh;
+  min-width: 200px;
+  max-width: 800px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  flex: 1;
+  margin: 10px;
+  position: relative;
+  transition: 0.5s ease-in;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.Card:hover {
+  opacity: 0.5;
+}
+.Card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.9)
+  );
+  z-index: 0;
+}
+.Card h3 {
+  color: #fff;
+  opacity: 1;
+  bottom: 20px;
+  left: 20px;
+  margin: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in 0.4s;
+  z-index: 1;
+  font-size: 2rem;
+  margin-bottom: 0px;
+}
+.Card h2 {
+  opacity: 0;
+  transition: opacity 0.3s ease-in 0.4s;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 100;
+  z-index: 1;
+  margin: 0px 1rem 1rem;
+}
+.Card h1 {
+  font-weight: bolder;
+  font-style: oblique;
+  color: #fff;
+  opacity: 1;
+  font-size: 3rem;
+  bottom: 20px;
+  left: 20px;
+  margin: 0px 1rem 0px 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in 0.4s;
+  z-index: 1;
+}
+.NominalizationType {
+  border-top: 2px solid #fff;
+  padding: 10px;
+  color: #fff;
+  z-index: 1;
+  margin: 0px 1rem 0px 1rem;
+  font-size: 1.5rem;
+}
+
+.Card button {
+  border-top: 2px solid #fff;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  padding: 20px 0px 0px 0px;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: transparent;
+  z-index: 1;
+  cursor: pointer;
+  text-align: left;
+  margin: 1rem;
+  font-style: oblique;
+  transition: opacity 0.3s ease-in 0.4s;
+  opacity: 0;
+}
+.Card.active {
+  transition: .5s ease-in;
+  background-size: 100% 100%;
+  flex: 1.5;
+  min-width: 300px;
+}
+.Card.active h1,
+.Card.active h3,
+.Card.active button,
+.Card.active h2 {
+  opacity: 1;
+}
+
+.CardsAndCategory.hidden {
+  display: none;
+}
+
+/*  Overlay  */
+
+.overlayCard {
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  min-height: 100%;
+  max-width: 100%;
+  background-color: black;
+  opacity: 0.9;
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  z-index: 2;
+}
+.overlayCard.Actors{
+  overflow: auto;
+  justify-content: center;
+  max-height: 100%;
+  max-width: 100%;
+  margin:auto;
+}
+.overlayCard.active {
+  display: flex;
+}
+.overlayCard.Actors.active {
+  justify-content: flex-start;
+  max-width: 100%;
+  max-height: 100%;
+}
+.overlayCard.Actors ul{
+width: 70%;
+}
+.overlayCard.Movies h2 {
+  width: 70%;
+  color: #fff;
+  font-size: 2rem;
+  margin-top: 50px;
+  z-index: 3;
+  text-align: center;
+  padding: 0px 20px 0px 20px;
+}
+.overlayCard.Actors p {
+  color: #fff;
+  margin: 50px;
+  font-size: 1.25rem;
+}
+.overlayCard.Actors li{
+  color:#fff;
+  margin: 0;
+}
+
+.overlayCard button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  
+}
+
+.overlayCard h1 {
+  text-align: center;
+  width: 80%;
+  color: #fff;
+  font-size: 3rem;
+  border-bottom: 2px solid #fff;
+  padding: 0px 20px 20px 20px;
+  z-index: 3;
+}
+.overlayCard ul {
+  padding: 0px;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.overlayCard li {
+  text-align: center;
+  margin: 5vw;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  font-size: 2rem;
+}
+.overlayCard span {
+  font-size: 1.75rem;
+}
+.name {
+  font-weight: 900;
+}
+.role {
+  font-weight: 100;
+}
+
+/* -------------------------------------------
+      Category 
+*/
+.CategoryNominalization {
+  margin: 0px 5.1vw 0px;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: flex-start;
+}
+.CardsAndCategory:nth-child(even) .CategoryNominalization {
+  justify-content: flex-end;
+}
+
+.CategoryNominalization p {
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  text-align: center;
+  /* font-family: "Brush Script MT", cursive; */
+  font-style: oblique;
+  font-weight: 100;
+  font-size: 1.75rem;
+  margin: 5px;
+}
+.CategoryNominalization h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 5px;
+  text-align: center;
+}
+
+.ButtonsClass {
+  flex: 1;
+  display: flex;
+  /* flex-wrap: wrap; */
+  margin-top: 3rem;
+  margin-right: 5vw;
+  justify-content: flex-end;
+}
+
+/* BUTTON DESIGN */
+
+.ButtonsClass button {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 2rem;
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+}
+
+.ButtonsClass button:hover,
+.ButtonsClass button:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.ButtonsClass button:hover {
+  transform: translateY(-1px);
+}
+
+.ButtonsClass button:active {
+  background-color: #f0f0f1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+.SearchAndButtons {
+  /* align-items: center; */
+  display: flex;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+.SearchYear {
+  width: 100%;
+  height: 100%;
+  /* flex: 1; */
+  display: flex;
+  align-items: flex-start;
+  margin-left: 5vw;
+  margin-top: 3rem;
+}
+.select-box {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  max-width: 20rem;
+}
+.select-box::-webkit-scrollbar {
+  border-radius: 0px;
+}
+.select-box:focus option {
+  border-radius: 0px;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.favorite-button{
+  border-top:none !important;
+}
+
+
+@media all and (max-width: 600px) {
+  
+  .overlayCard h1 {
+    font-size: 2rem;
+  }
+  .overlayCard span {
+    font-size: 1.25rem;
+  }
+  .CategoryNominalization h1 {
+    font-size: 1.5rem;
+  }
+  .CategoryNominalization p {
+    font-size: 1rem;
+  }
+  .LineText {
+    font-size: 1.25rem;
+  }
+  .NavTitle h1 {
+    font-size: 2.5rem;
+  }
+  .SearchAndButtons {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .ButtonsClass {
+    margin: 10px 0 0;
+  }
+  .ButtonsClass button {
+    font-size: 10px;
+  }
+  .SearchYear {
+    margin: 0;
+    text-align: center;
+    justify-content: center;
+    margin: 10px 0 10px;
+  }
+  
+}
+@media all and (max-width: 375px) {
+  .Card.active {
+    min-width: 200px;
+  }
+  .NavTitle h1 {
+    font-size: 2rem;
+  }
+}
+@media all and (max-width: 1024px) {
+  .overlayCard.Actors ul{
+    width: 90%;
+  }
+  .NavTitle h1 {
+    font-size: 3rem;
+  }
+  .Card h1 {
+    font-size: 2rem;
+  }
+  .Card h3 {
+  font-size: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  
+  .overlayCard h1{
+    font-size: 2rem;
+  }
+  .overlayCard h2{
+    font-size: 1.25rem !important;
+  }
+  .menu-icon {
+    display: block;
+    position: absolute;
+    left: 15px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background-color: #000067;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .nav-links.show-nav {
+    opacity: 1;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  .nav-links a {
+    font-size: 20px;
+    color: #fff;
+  }
+  .show-nav {
+    width: 100%;
+  }
+  .UserLogin{
+    width: 100px;;
+  }
+  .overlayCard{
+    overflow: scroll;
+  }
+  .nav-links li a {
+    display: none;
+  }
+}

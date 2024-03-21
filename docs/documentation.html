@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Documentation</title>
+    <link rel="stylesheet" href="documentation.css">
+</head>
+
+<body prefix="schema: http://schema.org">
+    <header>
+        <div class="banner">
+            <img src="images.png" width="100" height="50" alt="Scholarly HTML logo">
+            <h1>Actors Smart Visualizer</h1>
+        </div>
+    </header>
+    <div role="contentinfo">
+        <ol role="directory">
+            <li><a href="#abstract"><span>1. </span>Abstract</a></li>
+            <li><a href="#introduction"><span>2. </span>Introducere</a></li>
+            <li><a href="#structure"><span>3. </span>Arhitectura aplicatiei</a>
+                <ol role="directory">
+                    <li><a href="#teh"><span>3.1 </span>Tehnologii utilizate</a></li>
+                    <li><a href="#pachete"><span>3.2 </span>Pachete din Node Package Manager utilizate</a></li>
+                    <li><a href="#pag"><span>3.3 </span>Paginile aplicatiei</a></li>
+                    <li><a href="#register"><span>3.4 </span>Pagina register</a></li>
+                    <li><a href="#login"><span>3.5 </span>Pagina de login</a></li>
+                    <li><a href="#password"><span>3.6 </span>Pagina de schimbat parola</a></li>
+                    <li><a href="#home"><span>3.7 </span>Pagina acasa</li>
+                    <li><a href="#statistici"><span>3.8 </span>Pagina de statistici</a></li>
+                    <li><a href="#nominalizari"><span>3.9 </span>Pagina de nominalizari</a></li>
+                    <li><a href="#articole"><span>3.10 </span>Pagina de articole</a></li>
+                </ol>
+            </li>
+            <li><a href="#con"><span>4. </span>Constrangeri</a></li>
+            <li><a href="#fun"><span>5. </span>Functionalitatea site-ul</a></li>
+            <li><a href="#bib"><span>6. </span>Bibliografie</a></li>
+
+            <dl>
+                <dt>Autori</dt>
+                <dd>
+                    Burghianu Bianca Andreea
+                    &amp;
+                    <a href="https://github.com/biancaburghianu">git</a>
+                </dd>
+                <dd>
+                    Chirila Ciprian
+                    &amp;
+                    <a href="https://github.com/chirilaciprian">git</a>
+                </dd>
+                <dd>
+                    Perju Rares
+                    &amp;
+                    <a href="https://github.com/Perju-Rares-Andrei">git</a>
+                </dd>
+
+                <dt><a href="https://github.com/biancaburghianu/proiectTW">Project repository</a></dt>
+
+
+            </dl>
+    </div>
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+        <h2><span>1. </span>Abstract</h2>
+        <p>
+            Actors Smart Visualizer este un instrument Web de vizualizare flexibila a datelor referitoare la
+            nominalizarile actorilor la Screen Actors Guid (SAG) Awards.
+
+        </p>
+    </section>
+    <section id="introduction" role="doc-introduction">
+        <!-- review? -->
+        <h2><span>2. </span>Introducere</h2>
+        <p>
+            Utilizatorii nostri pot vedea statisticile in functie de an, numele show-ului, al filmului sau al actorului.
+            O
+            alta functionalitate pe care
+            o permite acest instrument Web este aceea de a descarca statisticile in diferite formate: CSV, WebP si SVG.
+            Utilizatorul poate de asemenea
+            sa citeasca articole referitoare la productii sau actori si sa vada nominalizarile in functie de categorii.
+            Un utilizator isi poate salva articolele, statisticile si actorii/productiile cinematografie preferate alese
+            in urma
+            navigarii sale pe site-ul nostru.
+        </p>
+        <p>
+            Scopul aplicatiei:
+        </p>
+        <ul>
+            <li>se incadreaza in domeniul family,free-time</li>
+            <li>este facuta pentru orice iubitor de filme, seriale</li>
+            <li>aduce o modalitate simpla si placuta de a ramane la curent cu nominalizarile la Screen Actors Guid (SAG)
+                Awards si vietile actorilor</li>
+            <li>
+                permite pastrarea statisticilor in formatul preferat
+            </li>
+        </ul>
+    </section>
+    <section id="structure">
+        <!-- review? -->
+        <h2><span>3. </span>Arhitectura aplicatiei</h2>
+        <p>
+            Site-ul este de tipul single-page aplication, am creeat 2 API-uri la care se fac request-uri pentru a
+            respecta
+            criteriul de micro-services, un server in are se fac request-urile pentru login register si articole, si un
+            API
+            la care facem request-uri pentru a primi informatiile despre statisticile furnizate de aplicatia noastra,
+            avand de asemenea o baza de date in care vom salva informatiile
+            legate de un
+            utilizator, actorii si productiile preferate. In baza de date am importat de asemenea CSV-ul Screen Actors
+            Guild Awards, 1994 - 2020
+            de care ne-am folosit in totalitate pentru creearea statisticilor. Informatiile
+            oferite unui utilizator
+            legat de actori, nominalizari
+            si productii vor fi de fapt raspunsuri ale request-urilor facute la API-ul The Movie Database (TMDb), iar
+            statisticle vor fi preluate
+            din Dataset-ul Screen Actors Guild Awards, 1994 - 2020, noi parsand datele din Dataset in functie de
+            preferintele utilizatorului,
+            pentru generarea statisticilor am utilizat intr-un procent de 100% dataset-ul, venind cu sugestii si idei
+            legate de ce si-ar dori
+            un utilizator sa vada legat de nominalizari. Un alt API extern configurat in aplicatia noastra este NewsAPI,
+            la inceput
+            am comunicat cu acest API prin intermediul request-urilor facute cu XMLHttpRequest/fetch, ulterior am
+            descoperit ca
+            au un SDK pentru
+            Node.js si l-am integrat in aplicatia noastra.
+            Arhitectura proiectului nostru urmeaza modelul MVC, model-view-controller. In models avem modelele cu
+            ajutorul carora
+            am creat tabelele din baza de date, in views avem scheletele HTML corespunzatoare paginilor din aplicatia
+            noastra, iar in controllers
+            avem controller-ele specifice rutelor din fiecare API. In controllers avem implementata logica
+            request-urilor ce ajung la API-urile noastre.
+
+        </p>
+        <section id="teh">
+            <!-- review? -->
+            <h3><span>3.1 </span> Tehnologii utilizate</h3>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Node.js pentru partea de backend</li>
+                <li>ORM-ul Sequelize pentru a creea o conexiune cu baza de date PostgreSQL si pentru a ne crea modelele
+                </li>
+                <li>SDK-ul NewsAPI pentru articolele configurate in aplicatia noastra</li>
+
+            </ul>
+            <section id="pachete">
+                <!-- review? -->
+                <h3><span>3.2 </span> Pachete din Node Package Manager utilizate</h3>
+                <ul>
+                    <li>sequelize - pentru conexiunea cu baza de date</li>
+                    <li>pg - clientul PostgreSQL pentru Node.js</li>
+                    <li>bcrypt - pentru hash-uirea parolelor </li>
+                    <li>dotenv - pentru "secretele" din aplicatia noastra: cheile API, datele legate de conexiunea cu
+                        baza de date,
+                        semnatura token-ului etc.
+                    </li>
+                    <li>query-string si url - pentru extragerea query param-ului dintr-un request</li>
+                    <li>jsonwebtoken - pentru generarea token-urilor si decodarea lor </li>
+                    <li>cors - cross origin resource sharing :) am folosit middleware-ul cors pentru configurarea
+                        de origins, requests si headers care sunt permise sa faca request-uri la API-urile noastre </li>
+                    <li>newsapi - SDK-ul de la NewsAPI</li>
+
+                </ul>
+                <section id="pag">
+                    <!-- review? -->
+                    <h3><span>3.3 </span>Paginile aplicatiei</h3>
+                    <p>
+                        Fiecare pagina a site-ului se bazeaza pe cate un schelet html, toate paginile de html se gasesc
+                        in
+                        src/views/HTML. Stilizarile paginilor se gasesc in src/static/CSS, pentru fiecare schelet
+                        de HTML, numele CSS-urilor corespunde cu numele HTML-urilor, fiind diferita doar extensia
+                        fisierului. In plus, in src/static/JS avem implementate
+                        script-uri de JavaScript in care se gasesc functiile necesare pentru schetele de HTML, conventia
+                        de
+                        denumire este aceeasi ca si la HTML-uri si CSS-uri.
+                    </p>
+                </section>
+                <section id="register">
+                    <!-- review? -->
+                    <h3><span>3.4 </span>Pagina de register</code></h3>
+                    <p>
+                        Pagina de register asigura o modalitate utilizatorului de a-si creea un cont printr-un formular
+                        pentru ca
+                        acesta
+                        sa poata beneficia de
+                        serviciile instrumentului Web. Pentru a le oferi utilizatorilor siguranta, parolele si
+                        actorul/productia
+                        cinematografica preferate sunt
+                        hash-uite cu bcrypt.
+                        Daca creearea contului a fost reusita, (utilizatorul nu a folosit un username care deja exista
+                        in aplicatia noastra sau a introdus o parola/ un nume preferat prea scurt),
+                        acesta este obligat sa se autentifice pentru a beneficia de serviciile instrumentului nostru
+                        Web.
+                    </p>
+                </section>
+                <section id="login">
+                    <!-- review? -->
+                    <h3><span>3.5 </span>Pagina de login</code></h3>
+                    <p>
+                        Pagina de login asigura o modalitate utilizatorului de a se loga printr-un formular pentru ca
+                        acesta
+                        sa poata beneficia de
+                        serviciile instrumentului Web.
+                        In momentul in care utilizatorul se logheaza cu succes, un JSON Web Token este generat si salvat
+                        in localStorage,
+                        urmand ca acest token sa fie trimis in header-ul de Authorization, in fiecare request facut de
+                        front-end la API-urile noastre,
+                        astfel, ii oferim utilizatorului siguranta pe toate durata navigarii pe site-ul nostru. Daca
+                        JWT-ul utilizatorului expira,
+                        il decodam, iar daca trece de validare, ii generam unul nou.
+                    </p>
+                </section>
+                <section id="password">
+                    <!-- review? -->
+                    <h3><span>3.6 </span>Pagina de schimbat parola</code></h3>
+                    <p>
+                        Pagina de schimbat parola ii pune la dispozitie utilizatorului o modalitate prin care
+                        isi poate schimba parola in cazul in care si-a uitat-o. Pentru resetarea parolei acesta are
+                        nevoie de username-ul pe care l-a folosit in momentul in care si-a creeat contul si de
+                        filmul/productia cinematografica
+                        preferata pe care a introdus-o tot in momentul in care si-a creat contul.
+                    </p>
+                </section>
+                <section id="home">
+                    <!-- review? -->
+                    <h3><span>3.7 </span>Pagina acasa</h3>
+                    <p>
+                        Pagina acasa ii pune la dispozitie utilizatorului o lista cu preferintele sale.
+                        Utilizatorul poate selecta o singura componenta preferata per categorie. De exemplu, o singura
+                        statistica
+                        sau un singur articol. Aceste preferinte sunt identificate in tabelele corespunzatoare prin
+                        intermediul id-ului
+                        unic al utilizatorului, din baza de date.
+                    </p>
+
+                </section>
+
+                <section id="statistici">
+                    <!-- review? -->
+                    <h3><span>3.8 </span>Pagina de statistici</h3>
+                    <p> Aceasta pagina poate fi accesata apasand pe STATISTICS, in bara de navigatie.
+                        In aceasta pagina utilizatorul poate vizualiza statisticile nominzalizarilor la Screen Actors
+                        Guid
+                        (SAG) Awards, le poate
+                        filtra in functie de preferintele sale, prin diferite metode de filtrare, pentru o generare
+                        dinamica de statistici. Informatiile cu ajutorul carora au fost generate statisticile sunt
+                        preluate in totalitate din
+                        Dataset-ul Screen Actors
+                        Guid
+                        (SAG) Awards, iar filtrarea pentru generarea statisticilor a fost gandita astfel incat un
+                        utilizator sa poata
+                        vedea cele mai importante rezultate din urma nominalizarilor, cu toate acestea am inclus si
+                        cateva optiuni de selectie pe care
+                        le poate face utilizatorul, pentru o generare dinamica de chart-uri cat mai relevante pentru el.
+                        Aceste statistici pot fi pe urma exportate: WebP, SVG si CSV. In momentul in care utilizatorul
+                        apasa butonul de export, si isi alege
+                        formatul preferat, chart-ul va fi descarcat, cu un nume sugestiv, pentru identificarea
+                        statisticii alese.
+                </section>
+                <section id="nominalizari">
+                    <!-- review? -->
+                    <h3><span>3.9 </span>Pagina de nominalizari</h3>
+                    <p>
+                        Aceasta pagina poate fi accesata din bara de navigatie, apasand NOMINEES, creata pentru
+                        vizualizarea
+                        nominalizarilor la Screen Actors Guid (SAG)
+                        Awards.
+                        Utilizatorul poate
+                        filtra rezultatele in functie de categoria nominalizarilor: Movies, Stunts, Series. In aceasta
+                        pagina utilizatorul
+                        poate vizualiza imagini cu actorii sau cu productiile cinematografice, poate sa vada informatii
+                        referitoare la acestea,
+                        cum ar fi cast-ul unei productii sau detalii legate de actori. Toate informatiile si pozele sunt
+                        preluate din API-ul
+                        The Movie Database, configurate in aplicatia noastra pentru a pune la dispozitie utilizatorilor
+                        o interfata cat se poate de intuitiva, user-friendly.
+                </section>
+                <section id="articole">
+                    <!-- review? -->
+                    <h3><span>3.10 </span>Pagina de articole</h3>
+                    <p>
+                        Un utilizator poate vedea mai multe articole cu informatii in legatura cu actorii sau
+                        productiile cinematografice preferate
+                        accesand din bara de navigare ARTICLES. Aici, am creeat un search bar, iar in functie de
+                        input-ul transmis de utilizator,
+                        noi interogam API-ul NewsAPI, cu ajutorul SDK-ul lor, afisandu-i utilizatorului cele mai
+                        relevante stiri in legatura cu
+                        subiectul ales. Articolele puse la dispozitie de noi contin imagini, link-uri ce permit
+                        navigarea catre sursa articolului,
+                        data la care a aparut, si o descriere a articolului plus titlul. Din nou, ii punem
+                        utilizatorului la dispozitie o filtrare
+                        a articolelor cat se poate de dinamica, si relevanta, articolele fiind ordonate in primul rand
+                        dupa acest criteriu transmis in request-uri catre NewsAPI.
+                    </p>
+                    <section id="con">
+                        <!-- review? -->
+                        <h2><span>4. </span>Constrangeri</h2>
+                        <p>
+                            Nu exista constrangeri de utilizare, deoarece site-ul e conceput pentru
+                            orice tip de ecran, functionand si pe modul orizontal al unui telefon,
+                            tablete, etc partea de front-end fiind full responsive.
+                            In schimb, utilizand o sursa externa pentru obtinerea articolelor: NewsAPI, acestia au o
+                            limita
+                            de request-uri pe care le poti efectua intr-o zi, 100 de request-uri/zi.
+                        </p>
+                    </section>
+                    <section id="fun">
+                        <!-- review? -->
+                        <h2><span>5. </span>Functionalitatea site-ului</h2>
+                        <p>
+                            Site-ul este construit in asa fel incat utilizatorii sa fie
+                            atrasi de interfata placuta si usor de utilizat pentru o interactiune plina
+                            de beneficii. Utilizatori pot fi considerati doar cei logati,
+                            pentru a putea beneficia de servicii.
+                            Site-ul pune la dispozitie utilizatorului diverse functii precum crearea
+                            unui cont, logarea, folosirea contului pentru a vizualiza statisticile generate, a le
+                            descarca.
+                            De asemenea, utilizatorul poate
+                            vizualiza detalii suplimentare referitoare la productiile sale favorite, inclusiv actorii
+                            sai
+                            favoriti. Prin intermediul site-ului nostru,
+                            utilizatorul poate vizualiza si nominalizarile per categorie, poate sa isi salveze actorii
+                            si
+                            productiile favorite, astfel interactiunea
+                            sa cu site-ul nostru fiind strict legata de preferintele sale in materie de filme si
+                            seriale.
+                        </p>
+                    </section>
+                    <section id="bib">
+                        <!-- review? -->
+                        <h2><span>6. </span>Bibliografie</h2>
+                        <p>
+                            <a
+                                href="https://w3c.github.io/scholarly-html/?fbclid=IwAR1KXp2BioDB1D3dZELQKtFIU1TT0T6tR2EJFUq-n2zUVV5L7n0NJhk_nf0#article">Raport
+                                Model</a>
+                        </p>
+                        <p>
+                            <a href="https://www.w3schools.com/css/default.asp"> CSS help</a>
+                        </p>
+                    </section>
+
+
+                    </dd>
+                    </dl>
+                </section>
+</body>
+
+</html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>AcVis</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../../static/CSS/statistics.css" />
+  <script src="https://cdn.plot.ly/plotly-2.20.0.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="top-nav">
+      <div class="logo">
+        <img src="../../static/PozeDiverse/Untitled.png" alt="Logo" />
+      </div>
+      <div class="nav-container">
+        <div class="menu-icon">
+          <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+          <li><a href="../HTML/home.html">Home</a></li>
+          <li><a href="../HTML/nominees.html">Nominees</a></li>
+          <li><a href="../HMTL/statistics.html">Statistics</a></li>
+          <li><a href="../HTML/articles.html">Articles</a></li>
+        </ul>
+      </div>
+      <button id="UserBtn"><i class="fa fa-user fa-2xl"></i></button>
+      <div class="UserLogin">
+        <ul>
+          <li><a href="#" id="logoutButton">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="statistics">
+      <h1 class="statistics-title">Statistics & Data Analysis</h1>
+      <form class="search-form">
+        <input type="text" placeholder="Search by title..." />
+      </form>
+
+      <article class="statistic">
+        <h1 class="statistic-title">Actors By Year
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+          <input type="checkbox" class="dd-input" id="test" />
+          <ul class="dd-menu">
+            <li onclick="exportChartActorsByYear('csv')">CSV</li>
+            <li onclick="exportChartActorsByYear('webp')">WebP</li>
+            <li onclick="exportChartActorsByYear('svg')">SVG</li>
+          </ul>
+        </label>
+
+        <div id="ActorsByYear" class="center"></div>
+
+        <div class="statistic-title" style="margin-bottom: 20px;">
+          <label for="year">Year:</label>
+          <select id="year">
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+            <option value="2009">2009</option>
+            <option value="2008">2008</option>
+            <option value="2007">2007</option>
+            <option value="2006">2006</option>
+            <option value="2005">2005</option>
+            <option value="2004">2004</option>
+            <option value="2003">2003</option>
+            <option value="2002">2002</option>
+            <option value="2001">2001</option>
+          </select>
+
+          <label for="gender">Gender:</label>
+          <select id="gender">
+            <option value="all">All</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+
+          <label for="wonActors">Won:</label>
+          <input type="checkbox" id="wonActors" />
+
+          <button onclick="fetchActorsData()">View</button>
+        </div>
+      </article>
+
+
+
+
+      <article class="statistic">
+        <h1 class="statistic-title">Winners By Category
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+          <input type="checkbox" class="dd-input" id="test" />
+          <ul class="dd-menu">
+            <li onclick="exportWinnersByCategory('csv')">CSV</li>
+            <li onclick="exportWinnersByCategory('webp')">WebP</li>
+            <li onclick="exportWinnersByCategory('svg')">SVG</li>
+          </ul>
+        </label>
+
+        <div id="WinnersByCategory" class="center"></div>
+
+        <div class="statistic-title" style="margin-bottom: 20px;">
+          <label for="Category">Category:</label>
+          <select id="Category">
+            <option value="CAST IN A MOTION PICTURE">CAST IN A MOTION PICTURE</option>
+            <option value="MALE ACTOR"> MALE ACTOR IN A LEADING ROLE</option>
+            <option value="FEMALE ACTOR"> FEMALE ACTOR IN LEADING ROLE</option>
+            <option value="ENSEMBLE IN A DRAMA SERIES"> ENSEMBLE IN A DRAMA SERIES</option>
+            <option value="FEMALE DRAMA"> FEMALE ACTOR IN A DRAMA SERIES</option>
+            <option value="MALE DRAMA"> MALE ACTOR IN A DRAMA SERIES</option>
+            <option value="ENSEMBLE IN A COMEDY SERIES"> ENSEMBLE IN A COMEDY SERIES</option>
+            <option value="FEMALE COMEDY"> FEMALE ACTOR IN A COMEDY SERIES</option>
+            <option value="MALE COMEDY"> MALE ACTOR IN A COMEDY SERIES</option>
+          </select>
+
+          <label for="wonCategory">Won:</label>
+          <input type="checkbox" id="wonCategory" />
+
+          <button onclick="fetchCategoryData()">View</button>
+        </div>
+      </article>
+
+
+      <article class="statistic">
+        <h1 class="statistic-title">Biggest Winners
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+       
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartBiggestWinners('csv')">CSV</li>
+            <li onclick="exportChartBiggestWinners('webp')">WebP</li>
+            <li onclick="exportChartBiggestWinners('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="BiggestWinners" class="center"></div>
+      </article>
+
+      <article class="statistic">
+        <h1 class="statistic-title">Biggest Nominees
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartBiggestNominees('csv')">CSV</li>
+            <li onclick="exportChartBiggestNominees('webp')">WebP</li>
+            <li onclick="exportChartBiggestNominees('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="BiggestNominees" class="center"></div>
+      </article>
+
+      <article class="statistic">
+        <h1 class="statistic-title">Most Nominated People
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartMostNominatedPeople('csv')">CSV</li>
+            <li onclick="exportChartMostNominatedPeople('webp')">WebP</li>
+            <li onclick="exportChartMostNominatedPeople('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="MostNominatedPeople" class="center"></div>
+      </article>
+
+      <article class="statistic">
+        <h1 class="statistic-title">People With Most Statues
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartPeopleWithMostStatues('csv')">CSV</li>
+            <li onclick="exportChartPeopleWithMostStatues('webp')">WebP</li>
+            <li onclick="exportChartPeopleWithMostStatues('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="PeopleWithMostStatues" class="center"></div>
+      </article>
+
+      <article class="statistic">
+        <h1 class="statistic-title">Most Appeared Shows
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartMostAppearedShows('csv')">CSV</li>
+            <li onclick="exportChartMostAppearedShows('webp')">WebP</li>
+            <li onclick="exportChartMostAppearedShows('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="MostAppearedShows" class="center"></div>
+      </article>
+
+      <article class="statistic">
+        <h1 class="statistic-title">Most Appeared People
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartMostAppearedPeople('csv')">CSV</li>
+            <li onclick="exportChartMostAppearedPeople('webp')">WebP</li>
+            <li onclick="exportChartMostAppearedPeople('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="MostAppearedPeople" class="center"></div>
+      </article>
+
+      <article class="statistic">
+        <h1 class="statistic-title">Most Appeared Category
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartMostAppearedCategories('csv')">CSV</li>
+            <li onclick="exportChartMostAppearedCategories('webp')">WebP</li>
+            <li onclick="exportChartMostAppearedCategories('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="MostAppearedCategories" class="center"></div>
+      </article>
+
+      <article class="statistic">
+        <h1 class="statistic-title">Actor vs Actress
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartActorVsActressProportions('csv')">CSV</li>
+            <li onclick="exportChartActorVsActressProportions('webp')">WebP</li>
+            <li onclick="exportChartActorVsActressProportions('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="ActorVsActressProportions" class="center"></div>
+      </article>
+
+      <article class="statistic">
+        <h1 class="statistic-title">Show By Year - Nominees
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartShowByYearNominees('csv')">CSV</li>
+            <li onclick="exportChartShowByYearNominees('webp')">WebP</li>
+            <li onclick="exportChartShowByYearNominees('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="ShowByYearNominees" class="center"></div>
+      </article>
+
+
+      <article class="statistic">
+        <h1 class="statistic-title">Show By Year - Winners
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartShowByYearWinners('csv')">CSV</li>
+            <li onclick="exportChartShowByYearWinners('webp')">WebP</li>
+            <li onclick="exportChartShowByYearWinners('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="ShowByYearWinners" class="center"></div>
+      </article>
+
+
+      <article class="statistic">
+        <h1 class="statistic-title">People by Year - Nominees
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartPeopleByYearNominees('csv')">CSV</li>
+            <li onclick="exportChartPeopleByYearNominees('webp')">WebP</li>
+            <li onclick="exportChartPeopleByYearNominees('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="PeopleByYearNominees" class="center"></div>
+      </article>
+
+      <article class="statistic">
+        
+        <h1 class="statistic-title">People by Year - Winners
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartPeopleByYearWinners('csv')">CSV</li>
+            <li onclick="exportChartPeopleByYearWinners('webp')">WebP</li>
+            <li onclick="exportChartPeopleByYearWinners('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="PeopleByYearWinners" class="center"></div>
+      </article>
+
+      <article class="statistic">
+        <h1 class="statistic-title">Winning and Losing
+          <button class ="favorite-button">
+            <i class="far fa-heart"></i>
+            Mark as favorite
+            </button>
+        </h1>
+        
+        <label class="dropdown">
+          <div class="dd-button">Export</div>
+
+          <input type="checkbox" class="dd-input" id="test" />
+
+          <ul class="dd-menu">
+            <li onclick="exportChartWinningandLosingProportions('csv')">CSV</li>
+            <li onclick="exportChartWinningandLosingProportions('webp')">WebP</li>
+            <li onclick="exportChartWinningandLosingProportions('svg')">SVG</li>
+          </ul>
+        </label>
+        <div id="WinningandLosingProportions" class="center"></div>
+      </article>
+
+
+
+    </section>
+  </main>
+
+  <footer></footer>
+  <script>
+    const logoutButton = document.querySelector("#logoutButton");
+
+    logoutButton.addEventListener("click", () => {
+      window.location.href = "login.html";
+      localStorage.removeItem("token");
+    });
+  </script>
+  <script src="../../static/JS/statistics.js"></script>
+</body>
+
+</html>

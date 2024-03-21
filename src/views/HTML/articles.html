@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>AcVis</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../../static/CSS/articles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="top-nav">
+            <div class="logo">
+                <img src="../../static/PozeDiverse/Untitled.png" alt="Logo" />
+            </div>
+            <div class="nav-container">
+                <div class="menu-icon">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../HTML/home.html">Home</a></li>
+                    <li><a href="../HTML/nominees.html">Nominees</a></li>
+                    <li><a href="../HTML/statistics.html">Statistics</a></li>
+                    <li><a href="../HTML/articles.html">Articles</a></li>
+                </ul>
+            </div>
+            <button id="UserBtn"><i class="fa fa-user fa-2xl"></i></button>
+            <div class="UserLogin">
+                <ul>
+                    <li><a href="#" id="logoutButton">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="articles-top">
+        <h1 class="articles-title">Articles</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search articles..." />
+            <button id="searchButton"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+
+    <div class="articles-container"></div>
+    <script>
+        const logoutButton = document.querySelector("#logoutButton");
+
+        logoutButton.addEventListener("click", () => {
+            window.location.href = "login.html";
+            localStorage.removeItem("token");
+        });
+    </script>
+    <script src="../../static/JS/articles.js"></script>
+</body>
+
+</html>
